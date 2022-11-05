@@ -26,7 +26,7 @@ import { WordComponent } from './components/words/word/word.component';
 import { HanziPinyinComponent } from './components/games/hanzi-pinyin/hanzi-pinyin.component';
 import { TargetaComponent } from './components/words/word/targeta/targeta.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FrasesComponent } from './components/shared/frases/frases.component';
+import { SentencesComponent } from './components/shared/sentences/sentences.component';
 import { MatchiplistComponent } from './components/shared/matchiplist/matchiplist.component';
 import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
@@ -56,7 +56,7 @@ import {MatIconModule} from '@angular/material/icon';
     WordComponent,
     HanziPinyinComponent,
     TargetaComponent,
-    FrasesComponent,
+    SentencesComponent,
     MatchiplistComponent
       ],
   imports: [

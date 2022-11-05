@@ -3,10 +3,10 @@ import { Paraula } from 'src/app/services/paraula.service';
 
 @Component({
   selector: 'app-frases',
-  templateUrl: './frases.component.html',
-  styleUrls: ['./frases.component.css']
+  templateUrl: './sentences.component.html',
+  styleUrls: ['./sentences.component.css']
 })
-export class FrasesComponent implements OnInit {
+export class SentencesComponent implements OnInit {
 
   @Input() paraula: Paraula;
 
