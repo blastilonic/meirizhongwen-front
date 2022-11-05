@@ -1,0 +1,27 @@
+<br>
+<div class="container list">
+  <br><h1 class="title">Llistat de tags</h1><br>
+  <input type="text" [(ngModel)]="searchText" placeholder="Buscar" class="form-control">
+  <br>
+  <table class="table">
+      <thead class="table-dark">
+          <tr>
+              <th scope="col">Nom</th>
+              <th scope="col">Descripció</th>
+              <th>Accions</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let tag of list| searchFilter : searchText  | paginate: config">
+              <td class="caracters">{{tag.name}}</td>
+              <td class="pinyin">{{tag.description}}</td>
+              <td>
+                  <button class="btn btn-primary" [routerLink]="['/tag/words/', tag.id]"><a class="button">paraules </a><i class="bi bi-list"></i></button>
+                  <button class="btn btn-warning" [routerLink]="['/tag/edit',tag.id]" routerLinkActive="router-link-active" ><a class="button">Editar </a><i class="bi bi-pencil-fill"></i>                  </button>
+                  <button class="btn btn-danger" (click)="eliminar(tag.id)"><a class="button">Eliminar </a><i class="bi bi-trash"></i></button>
+              </td>
+          </tr>
+      </tbody>
+  </table>
+  <pagination-controls (pageChange)="pageChange($event)" class="my-pagination"></pagination-controls>
+</div>

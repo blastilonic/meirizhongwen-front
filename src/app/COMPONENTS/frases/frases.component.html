@@ -1,0 +1,7 @@
+<ul class="list-group">
+  <ng-container *ngFor="let frase of frases">
+    <li *ngIf="frase != '' && frase != null" class="list-group-item" (click)="speak(frase)">
+      {{frase}}
+    </li>
+  </ng-container>
+</ul>

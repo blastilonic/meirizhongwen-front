@@ -1,0 +1,37 @@
+h1 {
+  text-align: center;
+}
+
+.paraula {
+  width: 90%;
+  max-width: 400px;
+  align-content: center;
+  margin: auto;
+}
+
+.tags {
+  width: 90%;
+  max-width: 800px;
+  align-content: center;
+  margin: auto;
+  text-align: center;
+}
+
+button {
+  margin: 10px;
+}
+
+.center {
+  align-content: center;
+  margin: auto;
+  width: 90px;
+}
+
+.noSeleccionats {
+  padding: 10px;
+}
+
+.comentari-frases {
+  color: rgb(64, 61, 61);
+  font-size: 14px;
+}

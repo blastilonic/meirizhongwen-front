@@ -1,0 +1,45 @@
+<div class="alert" *ngIf="!(micAccess$ | async)">
+	No es pot activar el micròfon!
+</div>
+
+<div class="message-box">
+	{{ message$ | async }}
+</div>
+
+<div id="joc">
+  <div id="pregunta" (click)="speak(paraules[random].xines)">
+    {{paraules[random].xines}}
+  </div>
+  <br>
+  <div class="correcte" *ngIf="correcte">
+    <h2>Correcte!</h2>
+    <div class="xines">
+      <div class="caracter" (click)="speak(paraules[random].xines)">{{paraules[random].xines}}</div>
+      <div class="pinyin">{{paraules[random].pinyin}}</div>
+    </div>
+    <div class="answer">
+      <div class="catala">{{paraules[random].catala}}</div>
+      {{paraules[random].comentari}}
+    </div>
+    <button class="resposta btn btn-primary" (click)="next()">Següent</button>
+  </div>
+
+  <div class="incorrecte" *ngIf="incorrecte != 0">
+    <h2>Incorrecte!</h2>
+    <div class="xines">
+      <div class="caracterwrong" (click)="speak(paraules[random].xines)">{{paraules[random].xines}}</div>
+      <div class="pinyin">{{paraules[random].pinyin}}</div>
+      <div>{{paraules[random].catala}}</div>
+      {{paraules[random].comentari}}
+    </div>
+    <div *ngFor="let paraula of paraules">
+      <div class="wrong" *ngIf="paraula.id == incorrecte.toString()">
+        {{paraula.catala}} és {{paraula.xines}} ({{paraula.pinyin}})<br>
+        {{paraula.comentari}}
+      </div>
+    </div>
+    <button class="resposta btn btn-primary" (click)="next()">Següent</button>
+  </div>
+</div>
+
+<button class="activate-button" (click)="activate()">Activate</button>

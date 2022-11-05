@@ -1,0 +1,16 @@
+<form>
+  <br><h1>Editar etiqueta</h1><br>
+  <div class="tag">
+    <div class="form-outline mb-4">
+      <input type="text" name="name" class="form-control" placeholder="Etiqueta" [(ngModel)]="actualTag.name" />
+    </div>
+
+    <div class="form-outline mb-4">
+      <input type="text" name="description" class="form-control" placeholder="Descripció" [(ngModel)]="actualTag.description" />
+    </div>
+  </div>
+  <br>
+  <div class="center">
+    <button type="submit" class="btn btn-primary btn-block mb-4 center" (click)="save()">Guardar</button>
+  </div>
+</form>

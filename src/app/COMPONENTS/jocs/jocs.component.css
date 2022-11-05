@@ -1,0 +1,51 @@
+.jocs {
+  margin: auto;
+  width: 90%;
+  padding: 10px;
+  text-align: center;
+}
+
+.tags {
+  border: 1px solid black;
+  border-radius: 5px;
+  min-height: fit-content;
+  height: 300px;
+}
+
+.noSeleccionats {
+  border-radius: 5px;
+  width: 50%;
+  float: left;
+  height:100%;
+}
+
+.seleccionats {
+  border-radius: 5px;
+  width: 50%;
+  overflow: hidden;
+  height:100%;
+}
+
+.button {
+  margin: 5px;
+}
+
+@media only screen and (max-width: 768px) {
+  button {
+    padding: 6px;
+  }
+
+  .tags {
+    height: auto;
+  }
+
+  .noSeleccionats {
+    float: none;
+    width: auto;
+    padding: 10px;
+  }
+
+  .seleccionats {
+    width: auto;
+  }
+}

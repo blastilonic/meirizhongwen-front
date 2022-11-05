@@ -1,0 +1,95 @@
+h2 {
+  text-align: center;
+}
+
+.list {
+  width: 90%;
+  align-content: center;
+  margin: auto;
+  border: 1px solid #3c3c37;
+  padding: 10px;
+  border-radius: 10px;
+  background-color:aliceblue;
+}
+.caracters {
+  font-size: 30px;
+  text-align: center;
+}
+
+.pinyin {
+  font-style: oblique;
+}
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+
+.example-header {
+  min-height: 64px;
+  padding: 8px 24px 0;
+}
+
+.list {
+  width: 90%;
+  align-content: center;
+  margin: auto;
+  border: 1px solid #3c3c37;
+  padding: 10px;
+  border-radius: 10px;
+  background-color:aliceblue;
+}
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+
+.count {
+  color: rgb(77, 76, 76);
+  padding: 1rem;
+
+}
+
+a {
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
+}
+
+@media only screen and (max-width: 650px) {
+  .caracters {
+    font-size: 16px;
+    text-align: center;
+  }
+  .list {
+    width: 98%;
+    font-size: 13px;
+    padding: 2px;
+  }
+
+  .pinyin {
+    font-size: 10px;
+  }
+
+  button {
+    font-size: 8px;
+    padding: 5px;
+  }
+
+  .button {
+    display: none;
+  }
+
+  .col_comentari {
+    display: none;
+  }
+
+  .col_pinyin {
+    display: none;
+  }
+}

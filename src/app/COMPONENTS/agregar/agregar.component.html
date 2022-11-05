@@ -1,0 +1,40 @@
+<form>
+  <br><h1>Nova paraula</h1><br>
+  <div class="paraula">
+    <div class="form-outline mb-4">
+      <input type="text" name="xines" class="form-control" placeholder="Xinès" [(ngModel)]="paraulaNova.xines" />
+    </div>
+
+    <div class="form-outline mb-4">
+      <input type="text" name="pinyin" class="form-control" placeholder="Pinyin" [(ngModel)]="paraulaNova.pinyin" />
+    </div>
+
+    <div class="form-outline mb-4">
+      <input type="text" name="catala" class="form-control" placeholder="Català" [(ngModel)]="paraulaNova.catala" />
+    </div>
+
+    <div class="form-outline mb-4">
+      <input type="text" name="comentari" class="form-control" placeholder="Comentari" [(ngModel)]="paraulaNova.comentari" />
+    </div>
+    <div class="form-outline mb-4 comentari-frases">
+      <textarea type="text" name="frases" class="form-control" placeholder="Frases" [(ngModel)]="paraulaNova.frases" cols="40" rows="5"></textarea>
+      Separa cada frase amb un ;
+    </div>
+  </div>
+  <div class="tags">
+    <div class="noSeleccionats">
+      <h6>Tags per seleccionar</h6>
+      <br>
+        <button *ngFor="let tag of allTags" type="button" class="btn btn-outline-secondary button" (click)="push(tag)">{{tag.name}} <i class="bi bi-plus"></i></button>
+    </div>
+    <div class="seleccionats">
+      <h6>Tags seleccionats</h6>
+      <br>
+        <button *ngFor="let tag of selectedTags" type="button" class="btn btn-outline-success button" (click)="pull(tag)">{{tag.name}} <i class="bi bi-check"></i></button>
+    </div>
+  </div>
+  <br>
+  <div class="center">
+    <button type="submit" class="btn btn-primary btn-block mb-4 center" (click)="agregarParaula()">Guardar</button>
+  </div>
+</form>

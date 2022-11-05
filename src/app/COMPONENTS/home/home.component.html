@@ -1,0 +1,20 @@
+<body class="d-flex h-100 text-center text-white bg-danger">
+  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <main class="px-3 ">
+      <h1>每日中文</h1>
+      <p class="lead">Memoritza noves paraules en xinès cada dia! <br>
+      每天记住新的中文单词！</p>
+      <p class="lead">
+        <a [routerLink]="['paraula/add']" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Afageix paraules</a>
+      </p>
+    </main>
+  </div>
+</body>
+<div class="titol">
+  <h5>Últimes paraules afegides</h5>
+</div>
+<div class="targetes">
+  <app-targeta *ngFor="let paraula of paraules" [paraula]="paraula"></app-targeta>
+</div>
+
+

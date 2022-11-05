@@ -1,0 +1,66 @@
+.xines {
+  font-size: 70px;
+  font-family: fangsong;
+}
+
+.catala {
+  font-size: 30px;
+}
+
+.comentari {
+  font-size: 15px;
+  color: rgb(52, 42, 42);
+  text-decoration: inherit;
+}
+
+.tp-wrapper {
+  -webkit-perspective: 800px;
+          perspective: 800px;
+}
+
+.tp-box {
+  position: relative;
+  width: 250px;
+  min-height: 350px;
+  margin: 3rem auto;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transform         : transform 1s;
+      -ms-transform         : transform 1s;
+          transform         : transform 1s;
+}
+.tp-box__side {
+  border-radius: 10%;
+  border: #23262d solid 1px;
+  padding: 10%;
+
+    width: 100%;
+  height: 100%;
+  position: absolute;
+
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  cursor: pointer;
+  -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.tp-box__front {
+  background: #222020;
+  color: #fff;
+  -webkit-transform : rotateY(0deg);
+  -ms-transform     : rotateY(0deg);
+  transform         : rotateY(0deg);
+}
+.tp-box__back {
+  background: #ffffff;
+  color: black;
+  -webkit-transform : rotateY(-180deg);
+  -ms-transform     : rotateY(-180deg);
+  transform         : rotateY(-180deg);
+}
+

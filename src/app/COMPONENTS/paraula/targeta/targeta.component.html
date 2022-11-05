@@ -1,0 +1,12 @@
+<div class="tp-wrapper">
+	<div class="tp-box" (click)="toggleFlip()" [@flipState]="flip">
+		<div class="tp-box__side tp-box__front">
+      <div class="xines">{{paraula.xines}}</div>
+      {{paraula.pinyin}}
+		</div>
+		<div class="tp-box__side tp-box__back">
+      <div class="catala">{{paraula.catala}}</div><br>
+      <div class="comentari">{{paraula.comentari}}</div>
+		</div>
+	</div>
+</div>

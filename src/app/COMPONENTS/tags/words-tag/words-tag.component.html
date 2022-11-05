@@ -1,0 +1,30 @@
+<br>
+<div class="container list">
+  <br><h2>Paraules de {{tag.name}}</h2><br>
+  <input type="text" [(ngModel)]="searchText" placeholder="Buscar" class="form-control">
+  <div class="count">{{count}} paraules</div>
+  <table class="table">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">Xinès</th>
+        <th scope="col" class="col_pinyin">Pinyin</th>
+        <th scope="col">Català</th>
+        <th scope="col" class="col_comentari">Comentari</th>
+        <th>Accions</th>
+      </tr>
+    </thead>
+      <tbody>
+        <tr *ngFor="let paraula of list| searchFilter : searchText  | paginate: config">
+              <td class="caracters"><a [routerLink]="['/paraula/',paraula.id]">{{paraula.xines}}</a></td>
+              <td class="pinyin col_pinyin">{{paraula.pinyin}}</td>
+              <td>{{paraula.catala}}</td>
+              <td class="col_comentari">{{paraula.comentari}}</td>
+              <td>
+                  <button class="btn btn-danger" (click)="eliminar(paraula.id)"><a class="button">Eliminar </a><i class="bi bi-trash"></i></button>
+                  <button class="btn btn-warning" [routerLink]="['/paraula/edit/',paraula.id]" routerLinkActive="router-link-active" ><a class="button">Editar </a><i class="bi bi-pencil-fill"></i></button>
+              </td>
+          </tr>
+      </tbody>
+  </table>
+  <pagination-controls (pageChange)="pageChange($event)" class="my-pagination"></pagination-controls>
+</div>

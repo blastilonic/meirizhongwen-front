@@ -1,0 +1,22 @@
+
+<div class="jocs">
+  <h2>Anem a jugar!</h2>
+    <div class="tags">
+      <div class="noSeleccionats">
+        <h6>Tags per seleccionar</h6>
+        <br>
+          <button *ngFor="let tag of allTags" type="button" class="btn btn-outline-secondary button" (click)="push(tag)">{{tag.name}} <i class="bi bi-plus"></i></button>
+      </div>
+      <div class="seleccionats">
+        <h6>Tags seleccionats</h6>
+        <br>
+          <button *ngFor="let tag of selectedTags" type="button" class="btn btn-outline-success button" (click)="pull(tag)">{{tag.name}} <i class="bi bi-check"></i></button>
+      </div>
+    </div>
+    <br>
+    <button class="btn btn-primary button" (click)="xinesCatala()">中文 -> Català</button>
+    <button class="btn btn-primary button" (click)="catalaXines()">Català -> 中文</button>
+    <button class="btn btn-primary button" (click)="tingliCatala()">听力 -> Català</button>
+    <button class="btn btn-primary button" (click)="tingliXines()">听力 -> 中文</button>
+    <button class="btn btn-primary button" (click)="hanziPinyin()">汉字 -> Pinyin</button>
+</div>

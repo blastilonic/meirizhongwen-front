@@ -1,0 +1,20 @@
+h1 {
+  text-align: center;
+}
+
+.tag {
+  width: 90%;
+  max-width: 400px;
+  align-content: center;
+  margin: auto;
+}
+
+.center {
+  align-content: center;
+  margin: auto;
+  width: 90px;
+}
+
+.noSeleccionats {
+  padding: 10px;
+}

@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="xines" (click)="speak(paraula.xines)">
+    <div class="caracter">
+      {{paraula.xines}}
+    </div>
+    <div class="pinyin">
+      {{paraula.pinyin}}
+    </div><br>
+  </div>
+  <div class="contingut">
+    <div class="catala"><h5>Significat</h5>{{paraula.catala}}</div><br>
+    <div clas="comentari" *ngIf="paraula.comentari != null && paraula.comentari != ''">
+    <h5>Comentari</h5>
+    {{paraula.comentari}}
+    </div><br>
+  </div>
+  <div *ngIf="paraula.frases != null && paraula.frases != ''">
+    <h5>Frases</h5>
+    <app-frases [paraula]="paraula"></app-frases>
+  </div><br>
+  <div class="tags">
+    <h5>Etiquetes</h5>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let tag of tags"><a [routerLink]="['/tag/words/', tag.id]">{{tag.name}}</a></li>
+    </ul>
+  </div><br>
+  <div class="targeta">
+    <h5>Targeta</h5>
+      <app-targeta [paraula]="paraula"></app-targeta>
+  </div><br>
+  <div class="opcions">
+    <button class="btn btn-danger" (click)="eliminar(paraula.id)"><a class="button">Eliminar </a><i class="bi bi-trash"></i></button>
+    <button class="btn btn-warning" [routerLink]="['/paraula/edit/', paraula.id]" routerLinkActive="router-link-active" ><a class="button">Editar </a><i class="bi bi-pencil-fill"></i></button>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+.container {
+  width: 50%;
+  margin: 0 auto;
+}
+  .xines {
+    text-align: center;
+    font-family: 'Hiragino Kaku Gothic Pro', 'WenQuanYi Zen Hei', '微軟正黑體', '蘋果儷中黑', Helvetica, Arial, sans-serif;
+  }
+
+ .caracter {
+  font-size: 80px;
+ }
+
+ .pinyin {
+  font-size: 15px;
+  color:rgb(97, 97, 97);
+ }
+
+ .opcions {
+  text-align: center;
+ }
+
+button {
+  margin: 10px;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+app-targeta {
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .container {
+    width: 90%;
+  }
+}

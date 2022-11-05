@@ -1,0 +1,45 @@
+<div id="joc">
+  <div id="pregunta" (click)="speak(paraules[random].xines)">
+    <i class="bi bi-volume-up"></i>
+  </div>
+  <br>
+  <div class="respostes" *ngFor="let paraula of paraules">
+    <button [class.btn-success]="correcte && paraula.id == paraules[random].id || incorrecte != 0 && paraula.id == paraules[random].id"
+    [class.btn-danger]="paraula.id == incorrecte.toString()"
+    [class.btn-secondary]="paraula.id != incorrecte.toString() && incorrecte != 0"
+    [disabled] = "incorrecte != 0 || correcte == true"
+    class="resposta btn btn-primary" id="btn{{paraula.id}}" (click)="answer(paraula)">
+      {{paraula.xines}}
+    </button>
+    <br><br>
+  </div>
+  <div class="correcte" *ngIf="correcte">
+    <h2>Correcte!</h2>
+    <div class="xines">
+      <div class="caracter" (click)="speak(paraules[random].xines)">{{paraules[random].xines}}</div>
+      <div class="pinyin">{{paraules[random].pinyin}}</div>
+    </div>
+    <div class="answer">
+      <div class="catala">{{paraules[random].catala}}</div>
+      {{paraules[random].comentari}}
+    </div>
+    <button class="resposta btn btn-primary" (click)="next()">Següent</button>
+  </div>
+
+  <div class="incorrecte" *ngIf="incorrecte != 0">
+    <h2>Incorrecte!</h2>
+    <div class="xines">
+      <div class="caracterwrong" (click)="speak(paraules[random].xines)">{{paraules[random].xines}}</div>
+      <div class="pinyin">{{paraules[random].pinyin}}</div>
+      <div>{{paraules[random].catala}}</div>
+      {{paraules[random].comentari}}
+    </div>
+    <div *ngFor="let paraula of paraules">
+      <div class="wrong" *ngIf="paraula.id == incorrecte.toString()">
+        {{paraula.catala}} és {{paraula.xines}} ({{paraula.pinyin}})<br>
+        {{paraula.comentari}}
+      </div>
+    </div>
+    <button class="btn btn-primary" (click)="next()">Següent</button>
+  </div>
+</div>
