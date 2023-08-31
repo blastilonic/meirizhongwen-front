@@ -19,6 +19,15 @@ export class WordListComponent implements OnInit {
   list:any=[];
   tagList:any=[];
   dataSource: any;
+  paraules: Paraula[] = [];
+  currentParauka: Paraula = {catala: "", comentari: "", frases: "", id: "", pinyin: "", xines: ""};
+  currentIndex = -1;
+  title = '';
+  page = 1;
+  count = 0;
+  pageSize = 7;
+  pageSizes = [7, 10, 15, 25];
+
   constructor(private paraulaService: ParaulaService,
     private tagService: TagService,
     private route: ActivatedRoute,
@@ -33,17 +42,18 @@ export class WordListComponent implements OnInit {
       .subscribe(page => (this.config.currentPage = page));
     }
 
-    pageChange(newPage: number) {
-      this.router.navigate(["//word/list"], { queryParams: { page: newPage } });
-    }
-      applyFilter(event: Event) {
-      const filterValue = (event.target as HTMLInputElement).value;
-      return this.dataSource.filter = filterValue.trim().toLowerCase();
-    }
-
   ngOnInit(): void {
     this.listarParaules();
     this.llistarTags();
+    this.retrieveParaules();
+  }
+
+  pageChange(newPage: number) {
+    this.router.navigate(["//word/list"], { queryParams: { page: newPage } });
+  }
+    applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    return this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   listarParaules()
@@ -51,7 +61,6 @@ export class WordListComponent implements OnInit {
     this.paraulaService.getParaules().subscribe(
       res=>{
         this.list=res;
-        console.log(res);
       },
       err=>console.log(err)
     );
@@ -61,7 +70,6 @@ export class WordListComponent implements OnInit {
     this.tagService.getTags().subscribe(
       res=>{
         this.tagList=res;
-        console.log(res);
       },
       err=>console.log(err)
     );
@@ -73,6 +81,42 @@ export class WordListComponent implements OnInit {
       res=>{this.ngOnInit();},
       err=>console.log(err)
     );
+  }
+
+  retrieveParaules(): void {
+    this.paraulaService.searchParaules(this.title, this.page, this.pageSize)
+        .subscribe({
+          next: (data) => {
+            this.paraules = data.content;
+            this.count = data.totalElements;
+            console.log(data);
+          },
+          error: (err) => {
+            console.log(err);
+          }
+        });
+  }
+
+  handlePageChange(event: number): void {
+    this.page = event;
+    this.retrieveParaules();
+  }
+
+  handlePageSizeChange(event: any): void {
+    this.pageSize = event.target.value;
+    this.page = 1;
+    this.retrieveParaules();
+  }
+
+  refreshList(): void {
+    this.retrieveParaules();
+    this.currentParauka = {catala: "", comentari: "", frases: "", id: "", pinyin: "", xines: ""};
+    this.currentIndex = -1;
+  }
+
+  searchTitle(): void {
+    this.page = 1;
+    this.retrieveParaules();
   }
 
 }

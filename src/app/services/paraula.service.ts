@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ParaulaService {
 
-  url='http://185.61.126.159:8080/api/paraules';
+  url='http://localhost:8080/api/paraules';
   constructor(private http: HttpClient) { }
 
   getParaules():Observable<any>
@@ -46,6 +46,11 @@ export class ParaulaService {
 
   select4random(ids: string):Observable<any> {
     return this.http.get(this.url + `/select4random/` + ids);
+  }
+
+  searchParaules(txt: string, pag: number, size: number):Observable<any>
+  {
+    return this.http.get(this.url + `/search?pag=` + pag + '&txt=' + txt + '&size=' + size);
   }
 }
 
