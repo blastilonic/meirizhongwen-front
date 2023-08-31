@@ -1,4 +1,3 @@
-import { hostViewClassName, identifierModuleUrl } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Paraula, ParaulaService } from 'src/app/services/paraula.service';
