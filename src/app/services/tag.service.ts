@@ -8,7 +8,7 @@ import { ParaulaService } from './paraula.service';
 })
 export class TagService {
 
-  url='http://185.61.126.159:8080/api/tags';
+  url='http://localhost:8080/api/tags';
   constructor(private http: HttpClient,
     private paraulaService: ParaulaService) { }
 
@@ -36,10 +36,15 @@ export class TagService {
   {
     return this.http.delete(this.url+'/'+id);
   }
+
+  searchTags(txt: string, pag: number, size: number):Observable<any>
+  {
+    return this.http.get(this.url + `/search?pag=` + pag + '&txt=' + txt + '&size=' + size);
+  }
 }
 
 
-export interface Tag{
+export interface Tag {
   id: string;
   name: string;
   description: string;

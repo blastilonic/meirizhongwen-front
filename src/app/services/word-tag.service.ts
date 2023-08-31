@@ -9,11 +9,9 @@ import { TagService } from './tag.service';
 })
 export class WordTagService {
 
-  url='http://185.61.126.159:8080/api/wordtags';
+  url='http://localhost:8080/api/wordtags';
   antivateRouter: any;
-  constructor(private http: HttpClient,
-    private paraulaService: ParaulaService,
-    private tagService: TagService) { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     this.getWordTagsByTagId(this.antivateRouter.snapshot.params.id);
@@ -57,6 +55,11 @@ export class WordTagService {
   deleteWordTag(id_word:string, id_tag:string):Observable<any>
   {
     return this.http.delete(this.url+'/'+id_word + ',' + id_tag);
+  }
+
+  searchParaulesByTag(txt: string, pag: number, size: number, tag: string):Observable<any>
+  {
+    return this.http.get(this.url + `/search?pag=` + pag + '&txt=' + txt + '&size=' + size + '&tag=' + tag);
   }
 }
 

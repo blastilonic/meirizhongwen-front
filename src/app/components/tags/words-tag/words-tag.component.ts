@@ -19,8 +19,15 @@ export class WordsTagComponent implements OnInit {
   list: any=[];
   dataSource: any;
   searchText = '';
-  count: string;
-  tag: any;
+  tag: Tag = {description: "", id: "", name: ""};
+  data: any[];
+  paraules: Paraula[] = [];
+  currentParauka: Paraula = {catala: "", comentari: "", frases: "", id: "", pinyin: "", xines: ""};
+  currentIndex = -1;
+  page = 1;
+  count = 0;
+  pageSize = 7;
+  pageSizes = [7, 10, 15, 25];
   constructor(
     private wordTagService: WordTagService,
     private paraulaService: ParaulaService,
@@ -40,8 +47,7 @@ export class WordsTagComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTag();
-    this.listTagWords();
-    this.countWords();
+    this.retrieveParaules();
   }
 
   listTagWords()
@@ -86,9 +92,55 @@ export class WordsTagComponent implements OnInit {
   pageChange(newPage: number) {
     this.router.navigate([this.router.url], { queryParams: { page: newPage } });
   }
-    applyFilter(event: Event) {
+  applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     return this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  listarParaules()
+  {
+    this.paraulaService.getParaules().subscribe(
+        res=>{
+          this.list=res;
+        },
+        err=>console.log(err)
+    );
+  }
+
+  retrieveParaules(): void {
+    this.wordTagService.searchParaulesByTag(this.searchText, this.page, this.pageSize, this.antivateRouter.snapshot.params.id)
+        .subscribe({
+          next: (data) => {
+            this.paraules = data.content;
+            this.count = data.totalElements;
+            console.log(data);
+          },
+          error: (err) => {
+            console.log(err);
+          }
+        });
+  }
+
+  handlePageChange(event: number): void {
+    this.page = event;
+    this.retrieveParaules();
+  }
+
+  handlePageSizeChange(event: any): void {
+    this.pageSize = event.target.value;
+    this.page = 1;
+    this.retrieveParaules();
+  }
+
+  refreshList(): void {
+    this.retrieveParaules();
+    this.currentParauka = {catala: "", comentari: "", frases: "", id: "", pinyin: "", xines: ""};
+    this.currentIndex = -1;
+  }
+
+  searchTitle(): void {
+    this.page = 1;
+    this.retrieveParaules();
   }
 
 }

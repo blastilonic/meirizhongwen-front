@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { TagService } from 'src/app/services/tag.service';
+import {Tag, TagService} from 'src/app/services/tag.service';
 import { WordTagService } from 'src/app/services/word-tag.service';
+import {Paraula} from "../../services/paraula.service";
 
 @Component({
   selector: 'app-tags',
@@ -10,10 +11,18 @@ import { WordTagService } from 'src/app/services/word-tag.service';
   styleUrls: ['./tags.component.css']
 })
 export class TagsComponent implements OnInit {
-
+  data: any[];
   list:any=[];
+  tagList:any=[];
   dataSource: any;
+  tags: Tag[] = [];
+  currentTag: Tag = {description: "", id: "", name: ""};
+  currentIndex = -1;
   searchText = '';
+  page = 1;
+  count = 0;
+  pageSize = 7;
+  pageSizes = [7, 10, 15, 25];
   config: any;
   constructor(private tagService: TagService,
     private wordTagService: WordTagService,
@@ -31,19 +40,7 @@ export class TagsComponent implements OnInit {
      }
 
   ngOnInit(): void {
-    this.listTags();
-  }
-
-  listTags()
-  {
-    this.tagService.getTags().subscribe(
-      res=>{
-        this.list=res;
-        console.log(res);
-      },
-      err=>console.log(err)
-    );
-
+    this.retrieveTags()
   }
 
   eliminar(id:string)
@@ -60,6 +57,51 @@ export class TagsComponent implements OnInit {
     applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     return this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  llistarTags() {
+    this.tagService.getTags().subscribe(
+        res=>{
+          this.tagList=res;
+        },
+        err=>console.log(err)
+    );
+  }
+
+  retrieveTags(): void {
+    this.tagService.searchTags(this.searchText, this.page, this.pageSize)
+        .subscribe({
+          next: (data) => {
+            this.tags = data.content;
+            this.count = data.totalElements;
+            console.log(data);
+          },
+          error: (err) => {
+            console.log(err);
+          }
+        });
+  }
+
+  handlePageChange(event: number): void {
+    this.page = event;
+    this.retrieveTags();
+  }
+
+  handlePageSizeChange(event: any): void {
+    this.pageSize = event.target.value;
+    this.page = 1;
+    this.retrieveTags();
+  }
+
+  refreshList(): void {
+    this.retrieveTags();
+    this.currentTag = {description: "", id: "", name: ""};
+    this.currentIndex = -1;
+  }
+
+  searchTitle(): void {
+    this.page = 1;
+    this.retrieveTags();
   }
 
 }

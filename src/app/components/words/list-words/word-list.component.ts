@@ -15,14 +15,13 @@ import { MatchiplistComponent } from '../../shared/matchiplist/matchiplist.compo
 export class WordListComponent implements OnInit {
   data: any[];
   config: any;
-  searchText = '';
   list:any=[];
   tagList:any=[];
   dataSource: any;
   paraules: Paraula[] = [];
-  currentParauka: Paraula = {catala: "", comentari: "", frases: "", id: "", pinyin: "", xines: ""};
+  currentParaula: Paraula = {catala: "", comentari: "", frases: "", id: "", pinyin: "", xines: ""};
   currentIndex = -1;
-  title = '';
+  searchText = '';
   page = 1;
   count = 0;
   pageSize = 7;
@@ -43,8 +42,6 @@ export class WordListComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.listarParaules();
-    this.llistarTags();
     this.retrieveParaules();
   }
 
@@ -84,7 +81,7 @@ export class WordListComponent implements OnInit {
   }
 
   retrieveParaules(): void {
-    this.paraulaService.searchParaules(this.title, this.page, this.pageSize)
+    this.paraulaService.searchParaules(this.searchText, this.page, this.pageSize)
         .subscribe({
           next: (data) => {
             this.paraules = data.content;
@@ -110,7 +107,7 @@ export class WordListComponent implements OnInit {
 
   refreshList(): void {
     this.retrieveParaules();
-    this.currentParauka = {catala: "", comentari: "", frases: "", id: "", pinyin: "", xines: ""};
+    this.currentParaula = {catala: "", comentari: "", frases: "", id: "", pinyin: "", xines: ""};
     this.currentIndex = -1;
   }
 

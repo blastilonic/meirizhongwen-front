@@ -1,30 +1,71 @@
 <br>
 <div class="container list">
-  <br><h2>Paraules de {{tag.name}}</h2><br>
-  <input type="text" [(ngModel)]="searchText" placeholder="Buscar" class="form-control">
-  <div class="count">{{count}} paraules</div>
-  <table class="table">
+    <br><h2>Paraules de {{tag.name}}</h2><br>
+
+    <div class="col-md-12">
+    <div class="input-group mb-3">
+        <input
+                type="text"
+                class="form-control"
+                placeholder="Cercar paraules"
+                [(ngModel)]="searchText"
+        />
+        <div class="input-group-append">
+            <input class="btn btn-outline-secondary" type="submit" value="Cercar" (click)="searchTitle()">
+        </div>
+    </div>
+</div>
+
+<div>
+    {{count}} paraules trobades<br><br>
+</div>
+
+<table class="table">
     <thead class="table-dark">
-      <tr>
+    <tr>
         <th scope="col">Xinès</th>
         <th scope="col" class="col_pinyin">Pinyin</th>
         <th scope="col">Català</th>
         <th scope="col" class="col_comentari">Comentari</th>
         <th>Accions</th>
-      </tr>
+    </tr>
     </thead>
-      <tbody>
-        <tr *ngFor="let paraula of list| searchFilter : searchText  | paginate: config">
-              <td class="caracters"><a [routerLink]="['/word/',paraula.id]">{{paraula.xines}}</a></td>
-              <td class="pinyin col_pinyin">{{paraula.pinyin}}</td>
-              <td>{{paraula.catala}}</td>
-              <td class="col_comentari">{{paraula.comentari}}</td>
-              <td>
-                  <button class="btn btn-danger" (click)="eliminar(paraula.id)"><a class="button">Eliminar </a><i class="bi bi-trash"></i></button>
-                  <button class="btn btn-warning" [routerLink]="['/word/edit/',paraula.id]" routerLinkActive="router-link-active" ><a class="button">Editar </a><i class="bi bi-pencil-fill"></i></button>
-              </td>
-          </tr>
-      </tbody>
-  </table>
-  <pagination-controls (pageChange)="pageChange($event)" class="my-pagination"></pagination-controls>
+    <tbody>
+    <tr *ngFor="
+          let item of paraules | paginate : {
+                  itemsPerPage: pageSize,
+                  currentPage: page,
+                  totalItems: count
+                };
+          let i = index">
+        <td class="caracters"><a [routerLink]="['/word/',item.id]">{{item.xines}}</a></td>
+        <td class="pinyin col_pinyin">{{item.pinyin}}</td>
+        <td>{{item.catala}}</td>
+        <td class="col_comentari">{{item.comentari}}</td>
+        <td>
+            <button class="btn btn-danger" (click)="eliminar(item.id)"><a class="button">Eliminar </a><i class="bi bi-trash"></i></button>
+            <button class="btn btn-warning" [routerLink]="['/word/edit/',item.id]" routerLinkActive="router-link-active" ><a class="button">Editar </a><i class="bi bi-pencil-fill"></i></button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+
+<div class="col-md-12">
+    <pagination-controls
+            previousLabel="Anterior"
+            nextLabel="Següent"
+            [responsive]="true"
+            (pageChange)="handlePageChange($event)"
+    ></pagination-controls>
+</div>
+
+<div class="mt-3">
+    Nombre de resultats per pàgina:
+    <select (change)="handlePageSizeChange($event)">
+        <option *ngFor="let size of pageSizes" [ngValue]="size">
+            {{ size }}
+        </option>
+    </select>
 </div>
