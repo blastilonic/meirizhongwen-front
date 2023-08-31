@@ -23,6 +23,7 @@
       <div class="catala">{{paraules[random].catala}}</div>
       {{paraules[random].comentari}}
     </div>
+    <app-frases [paraula]="paraules[random]"></app-frases>
     <button class="resposta btn btn-primary" (click)="next()">Següent</button>
   </div>
 
@@ -40,6 +41,7 @@
         {{paraula.comentari}}
       </div>
     </div>
+    <app-frases [paraula]="paraules[random]"></app-frases>
     <button class="resposta btn btn-primary" (click)="next()">Següent</button>
   </div>
 </div>
